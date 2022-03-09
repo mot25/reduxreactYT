@@ -5,9 +5,12 @@ const initState = {
 
 export const ADD_CUSTOMER = 'ADD_CUSTOMER'
 export const REMOVE_CUSTOMER = 'REMOVE_CUSTOMER'
+export const ADD_MANY_CUSTOMER = 'ADD_MANY_CUSTOMER'
 
 export const customReducer = (state = initState, action) => {
     switch (action.type) {
+        case ADD_MANY_CUSTOMER:
+            return { ...state, custom: [...state.custom, ...action.payload] }
         case ADD_CUSTOMER:
             return { ...state, custom: [...state.custom, action.payload] }
         case REMOVE_CUSTOMER:
@@ -19,6 +22,6 @@ export const customReducer = (state = initState, action) => {
 
 
 export const removeCustomerAction = (payload) => ({ type: REMOVE_CUSTOMER, payload })
-
+export const addManyCustomers = (payload) => ({ type: ADD_MANY_CUSTOMER, payload })
 export const addCustomerAction = (payload) => ({ type: ADD_CUSTOMER, payload })
 

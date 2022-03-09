@@ -5,6 +5,7 @@ import {
   addCustomerAction,
   removeCustomerAction
 } from './store/customerReducer'
+import { fetchCustomer } from './asyncAction/cusromerAsync';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <button onClick={() => addCach(cashi)}>add</button>
       <button onClick={() => getCach(cashi)}>get</button>
       <button onClick={() => addCustomer(prompt())}>add customer</button>
+      <button onClick={() => dispath(fetchCustomer())}>add customer from database</button>
       {customers.length > 0 ? <div>
         {customers.map(cust => {
           return <div onClick={() => removeCustomer(cust.id)} key={cust.id}>{cust.name}</div>

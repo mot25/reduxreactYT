@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addCustomerAction = exports.removeCustomerAction = exports.customReducer = exports.REMOVE_CUSTOMER = exports.ADD_CUSTOMER = void 0;
+exports.addCustomerAction = exports.addManyCustomers = exports.removeCustomerAction = exports.customReducer = exports.ADD_MANY_CUSTOMER = exports.REMOVE_CUSTOMER = exports.ADD_CUSTOMER = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -26,12 +26,19 @@ var ADD_CUSTOMER = 'ADD_CUSTOMER';
 exports.ADD_CUSTOMER = ADD_CUSTOMER;
 var REMOVE_CUSTOMER = 'REMOVE_CUSTOMER';
 exports.REMOVE_CUSTOMER = REMOVE_CUSTOMER;
+var ADD_MANY_CUSTOMER = 'ADD_MANY_CUSTOMER';
+exports.ADD_MANY_CUSTOMER = ADD_MANY_CUSTOMER;
 
 var customReducer = function customReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    case ADD_MANY_CUSTOMER:
+      return _objectSpread({}, state, {
+        custom: [].concat(_toConsumableArray(state.custom), _toConsumableArray(action.payload))
+      });
+
     case ADD_CUSTOMER:
       return _objectSpread({}, state, {
         custom: [].concat(_toConsumableArray(state.custom), [action.payload])
@@ -59,6 +66,15 @@ var removeCustomerAction = function removeCustomerAction(payload) {
 };
 
 exports.removeCustomerAction = removeCustomerAction;
+
+var addManyCustomers = function addManyCustomers(payload) {
+  return {
+    type: ADD_MANY_CUSTOMER,
+    payload: payload
+  };
+};
+
+exports.addManyCustomers = addManyCustomers;
 
 var addCustomerAction = function addCustomerAction(payload) {
   return {
